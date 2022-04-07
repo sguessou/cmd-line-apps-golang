@@ -9,12 +9,12 @@ import (
 )
 
 func main() {
-	lines := flag.Bool("l", false, "Count lines")
+	words := flag.Bool("w", false, "Count words")
 	countBytes := flag.Bool("b", false, "Count number of bytes")
 
 	flag.Parse()
 
-	fmt.Println(count(os.Stdin, *lines, *countBytes))
+	fmt.Println(count(os.Stdin, *words, *countBytes))
 }
 
 func count(r io.Reader, countWords bool, countBytes bool) int {
