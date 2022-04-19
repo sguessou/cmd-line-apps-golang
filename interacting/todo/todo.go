@@ -87,3 +87,12 @@ func (l *List) String() string {
 
 	return formatted
 }
+
+func (l *List) FilterUncomplete() {
+	for k, t := range *l {
+		if t.Done {
+			continue
+		}
+		fmt.Fprintf(os.Stdout, " %d: %s\n", k+1, t.Task)
+	}
+}

@@ -23,6 +23,7 @@ func main() {
 
 	add := flag.Bool("add", false, "Add task to the ToDo list")
 	list := flag.Bool("list", false, "List all tasks")
+	filter := flag.Bool("filter", false, "List uncompleted tasks")
 	del := flag.Int("del", 0, "Item to be deleted")
 	complete := flag.Int("complete", 0, "Item to be completed")
 
@@ -42,6 +43,8 @@ func main() {
 	switch {
 	case *list:
 		fmt.Print(l)
+	case *filter:
+		l.FilterUncomplete()
 	case *complete > 0:
 		if err := l.Complete(*complete); err != nil {
 			fmt.Fprintln(os.Stderr, err)
