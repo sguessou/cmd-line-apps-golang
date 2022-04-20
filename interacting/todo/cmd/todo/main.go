@@ -25,6 +25,7 @@ func main() {
 	list := flag.Bool("list", false, "List all tasks")
 	filter := flag.Bool("filter", false, "List uncompleted tasks")
 	del := flag.Int("del", 0, "Item to be deleted")
+	date := flag.Bool("date", false, "Show current date")
 	complete := flag.Int("complete", 0, "Item to be completed")
 
 	flag.Parse()
@@ -41,6 +42,8 @@ func main() {
 	}
 
 	switch {
+	case *date:
+		fmt.Fprintf(os.Stdout, "The current date is: %s", todo.ShowCurrentDate())
 	case *list:
 		fmt.Print(l)
 	case *filter:

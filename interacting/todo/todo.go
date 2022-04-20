@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"os"
 	"time"
 )
@@ -95,4 +96,14 @@ func (l *List) FilterUncomplete() {
 		}
 		fmt.Fprintf(os.Stdout, " %d: %s\n", k+1, t.Task)
 	}
+}
+
+func ShowCurrentDate() string {
+	now := time.Now()
+	loc, err := time.LoadLocation("Europe/Helsinki")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return fmt.Sprintf("%s", now.In(loc))
 }
