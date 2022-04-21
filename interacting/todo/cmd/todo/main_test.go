@@ -12,7 +12,7 @@ import (
 
 var (
 	binName  = "todo"
-	fileName = ".todo.json"
+	fileName = ".todo_tst.json"
 )
 
 func TestMain(m *testing.M) {
@@ -40,6 +40,10 @@ func TestMain(m *testing.M) {
 }
 
 func TestTodoCLI(t *testing.T) {
+	if os.Getenv("TODO_FILENAME") != "" {
+		fileName = os.Getenv("TODO_FILENAME")
+	}
+
 	task := "test task number 1"
 
 	dir, err := os.Getwd()
