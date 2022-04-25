@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 
@@ -35,13 +36,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := run(*filename); err != nil {
+	if err := run(*filename, os.Stdout); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 }
 
-func run(filename string) error {
+func run(filename string, out io.Writer) error {
 	input, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return err
@@ -58,7 +59,7 @@ func run(filename string) error {
 	}
 
 	outName := temp.Name()
-	fmt.Println(outName)
+	fmt.Fprintln(out, outName)
 
 	return saveHTML(outName, htmlData)
 }
